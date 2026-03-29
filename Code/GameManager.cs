@@ -29,21 +29,50 @@ public sealed class GameManager : Component, Component.INetworkListener
 
 	/// <summary>
 	/// Called by the network system when a player connects.
-	/// Creates their player object and assigns default RP state.
+	/// Builds a full citizen pawn and assigns default RP state.
 	/// </summary>
 	public void OnActive( Connection connection )
 	{
-		// Create a new player object from the scene's network prefab
-		var playerObj = new GameObject( true, $"Player - {connection.DisplayName}" );
-		playerObj.NetworkSpawn( connection );
+		// Pick a random spawn point, or fall back to just above the world origin.
+		var spawn = Scene.GetAllComponents<SpawnPoint>().FirstOrDefault();
+		var spawnPos = spawn?.Transform.Position ?? Vector3.Up * 50f;
 
-		// Attach player state
+		// Root player object.
+		var playerObj = new GameObject( true, $"Player - {connection.DisplayName}" );
+		playerObj.Transform.Position = spawnPos;
+
+		// Citizen model and animations.
+		var renderer = playerObj.Components.Create<SkinnedModelRenderer>();
+		renderer.Model = Model.Load( "models/citizen/citizen.vmdl" );
+		var animHelper = playerObj.Components.Create<CitizenAnimationHelper>();
+		animHelper.Target = renderer;
+
+		// Physics-driven character movement.
+		var cc = playerObj.Components.Create<CharacterController>();
+		cc.Height = 72f;
+		cc.Radius = 16f;
+
+		// First-person camera lives in a child object so it can be
+		// enabled/disabled independently per client.
+		var camObj = new GameObject( true, "Camera" );
+		camObj.Parent = playerObj;
+		var cam = camObj.Components.Create<CameraComponent>();
+		cam.ZNear = 1f;
+		cam.ZFar = 10000f;
+		cam.FieldOfView = 90f;
+
+		// Input / locomotion controller.
+		playerObj.Components.Create<PlayerController>();
+
+		// RP state.
 		var state = playerObj.Components.Create<PlayerState>();
 		state.RpName = connection.DisplayName;
 		state.JobName = DefaultJobName;
 		state.StartingMoney = DefaultStartingMoney;
 		state.PaydayInterval = DefaultPaydayInterval;
 		state.Money = DefaultStartingMoney;
+
+		playerObj.NetworkSpawn( connection );
 	}
 
 	/// <summary>Retrieve every PlayerState in the scene.</summary>

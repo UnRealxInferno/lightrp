@@ -1,0 +1,213 @@
+{
+  "__guid": "c1a2b3c4-d5e6-7890-abcd-ef0123456789",
+  "GameObjects": [
+    {
+      "__guid": "11111111-1111-1111-1111-111111111101",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Directional Light",
+      "Position": "0,0,200",
+      "Rotation": "-0.2459842,0.5938582,0.2931525,0.7077327",
+      "Scale": "1,1,1",
+      "Tags": "light_directional,light",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.DirectionalLight",
+          "__guid": "11111111-1111-1111-1111-111111111102",
+          "__enabled": true,
+          "Flags": 0,
+          "FogMode": "Enabled",
+          "FogStrength": 1,
+          "LightColor": "0.91373,0.98039,1,1",
+          "Shadows": true,
+          "SkyColor": "0,0,0,0"
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "22222222-2222-2222-2222-222222222201",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Map",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.MapInstance",
+          "__guid": "22222222-2222-2222-2222-222222222202",
+          "__enabled": true,
+          "Flags": 0,
+          "__version": 1,
+          "EnableCollision": true,
+          "MapName": "facepunch.flatgrass",
+          "NoOrigin": false,
+          "UseMapFromLaunch": false
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "33333333-3333-3333-3333-333333333301",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "GameManager",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "LightRP.GameManager",
+          "__guid": "33333333-3333-3333-3333-333333333302",
+          "__enabled": true,
+          "Flags": 0,
+          "DefaultJobName": "Citizen",
+          "DefaultStartingMoney": 500,
+          "DefaultPaydayInterval": 120.0
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "44444444-4444-4444-4444-444444444401",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "SpawnPoint",
+      "Position": "0,0,100",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.SpawnPoint",
+          "__guid": "44444444-4444-4444-4444-444444444402",
+          "__enabled": true,
+          "Flags": 0
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "55555555-5555-5555-5555-555555555501",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "HUD",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "LightRP.RpHud",
+          "__guid": "55555555-5555-5555-5555-555555555502",
+          "__enabled": true,
+          "Flags": 0
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "66666666-6666-6666-6666-666666666601",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "JobMenu",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "LightRP.JobMenu",
+          "__guid": "66666666-6666-6666-6666-666666666602",
+          "__enabled": true,
+          "Flags": 0
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "77777777-7777-7777-7777-777777777701",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Preview Camera",
+      "Position": "-300,0,100",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.CameraComponent",
+          "__guid": "77777777-7777-7777-7777-777777777702",
+          "__enabled": true,
+          "Flags": 0,
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "All",
+          "EnablePostProcessing": true,
+          "FieldOfView": 60,
+          "FovAxis": "Horizontal",
+          "IsMainCamera": true,
+          "Priority": 1,
+          "ZFar": 10000,
+          "ZNear": 10
+        }
+      ],
+      "Children": []
+    }
+  ],
+  "SceneProperties": {
+    "NetworkInterpolation": true,
+    "TimeScale": 1,
+    "WantsSystemScene": true,
+    "Metadata": {}
+  },
+  "ResourceVersion": 3,
+  "Title": "untitled",
+  "Description": null,
+  "__references": [],
+  "__version": 3
+}
