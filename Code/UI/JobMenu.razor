@@ -1,0 +1,85 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using LightRP.Jobs;
+@inherits PanelComponent
+
+<root>
+	@if ( IsOpen )
+	{
+		<div class="job-menu">
+			<div class="header">
+				<span class="title">Choose a Job</span>
+				<button class="close-btn" onclick="@Close">✕</button>
+			</div>
+			<div class="categories">
+				@foreach ( var category in JobManager.GetCategories() )
+				{
+					<div class="category">
+						<div class="category-name">@category</div>
+						@foreach ( var job in JobManager.GetByCategory( category ) )
+						{
+							var color = $"rgb({(int)(job.Color.r * 255)}, {(int)(job.Color.g * 255)}, {(int)(job.Color.b * 255)})";
+							var count = JobManager.CountPlayersInJob( job.Name, GameManager.GetAllPlayers() );
+							var slotsText = job.MaxSlots > 0 ? $"{count}/{job.MaxSlots}" : $"{count}";
+							var canJoin = JobManager.CanJoinJob( job.Name, GameManager.GetAllPlayers() );
+
+							<div class="job-card @(canJoin ? "" : "full")" style="border-color: @color">
+								<div class="job-info">
+									<span class="job-name" style="color: @color">@job.Name</span>
+									<span class="job-desc">@job.Description</span>
+									<span class="job-salary">Salary: $@job.Salary</span>
+								</div>
+								<div class="job-actions">
+									<span class="job-slots">@slotsText</span>
+									@if ( canJoin )
+									{
+										<button class="join-btn" onclick="@( () => SelectJob( job.Name ) )">Join</button>
+									}
+									else
+									{
+										<span class="full-label">Full</span>
+									}
+								</div>
+							</div>
+						}
+					</div>
+				}
+			</div>
+		</div>
+	}
+</root>
+
+@code {
+	public bool IsOpen { get; set; }
+
+	protected override void OnUpdate()
+	{
+		if ( Input.Pressed( "Score" ) )
+		{
+			IsOpen = !IsOpen;
+		}
+	}
+
+	private void SelectJob( string jobName )
+	{
+		var state = Scene?.GetAllComponents<PlayerState>()
+			.FirstOrDefault( s => !s.IsProxy );
+
+		if ( state is null ) { return; }
+
+		if ( state.SetJob( jobName ) )
+		{
+			IsOpen = false;
+		}
+	}
+
+	private void Close()
+	{
+		IsOpen = false;
+	}
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine( IsOpen, Time.Now );
+	}
+}

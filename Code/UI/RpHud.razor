@@ -1,0 +1,54 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using LightRP.Jobs;
+@inherits PanelComponent
+
+<root>
+	<div class="hud-wrapper">
+		<div class="hud-bar">
+			<div class="hud-item job" style="border-color: @JobColor">
+				<span class="label">Job</span>
+				<span class="value">@JobName</span>
+			</div>
+			<div class="hud-item money">
+				<span class="label">Wallet</span>
+				<span class="value">$@Money</span>
+			</div>
+			<div class="hud-item name">
+				<span class="label">Name</span>
+				<span class="value">@RpName</span>
+			</div>
+		</div>
+	</div>
+</root>
+
+@code {
+	public string JobName { get; set; } = "Citizen";
+	public int Money { get; set; } = 0;
+	public string RpName { get; set; } = "Unnamed";
+	public string JobColor { get; set; } = "#ffffff";
+
+	protected override void OnUpdate()
+	{
+		var state = Scene?.GetAllComponents<PlayerState>()
+			.FirstOrDefault( s => !s.IsProxy );
+
+		if ( state is null ) { return; }
+
+		RpName = state.RpName;
+		JobName = state.JobName;
+		Money = state.Money;
+
+		var job = state.Job;
+		if ( job is not null )
+		{
+			var c = job.Color;
+			JobColor = $"rgb({(int)(c.r * 255)}, {(int)(c.g * 255)}, {(int)(c.b * 255)})";
+		}
+	}
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine( RpName, JobName, Money );
+	}
+}

@@ -1,0 +1,56 @@
+RpHud
+{
+	position: absolute;
+	left: 16px;
+	bottom: 16px;
+	font-family: Poppins, Roboto, sans-serif;
+	pointer-events: none;
+
+	.hud-wrapper
+	{
+		display: flex;
+		flex-direction: column;
+	}
+
+	.hud-bar
+	{
+		display: flex;
+		flex-direction: row;
+		gap: 8px;
+	}
+
+	.hud-item
+	{
+		background-color: rgba(0, 0, 0, 0.75);
+		border-radius: 6px;
+		padding: 8px 14px;
+		border-left: 3px solid #ffffff;
+		display: flex;
+		flex-direction: column;
+
+		.label
+		{
+			font-size: 10px;
+			color: rgba(255, 255, 255, 0.5);
+			text-transform: uppercase;
+			letter-spacing: 1px;
+		}
+
+		.value
+		{
+			font-size: 16px;
+			color: #ffffff;
+			font-weight: 600;
+		}
+	}
+
+	.hud-item.money
+	{
+		border-color: #4caf50;
+	}
+
+	.hud-item.name
+	{
+		border-color: #90caf9;
+	}
+}

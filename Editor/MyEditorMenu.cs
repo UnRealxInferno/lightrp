@@ -1,8 +1,10 @@
-public static class MyEditorMenu
+public static class LightRpEditorMenu
 {
-	[Menu("Editor", "LightRP/My Menu Option")]
-	public static void OpenMyMenu()
+	[Menu( "Editor", "LightRP/About" )]
+	public static void OpenAbout()
 	{
-		EditorUtility.DisplayDialog("It worked!", "This is being called from your library's editor code!");
+		EditorUtility.DisplayDialog(
+			"LightRP",
+			"A simple, easily editable RP framework for S&Box.\nInspired by DarkRP." );
 	}
 }
